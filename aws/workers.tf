@@ -14,6 +14,12 @@ resource "aws_eks_node_group" "nodegroup" {
     max_size     = var.max_size
     min_size     = var.min_size
   }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.node-role-AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.node-role-AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.node-role-AmazonEC2ContainerRegistryReadOnly,
+  ]
 }
 
 resource "aws_iam_role" "node-role" {

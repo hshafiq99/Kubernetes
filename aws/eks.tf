@@ -21,6 +21,16 @@ resource "aws_iam_role" "cluster-role" {
 POLICY
 }
 
+resource "aws_iam_role_policy_attachment" "cluster-role-AmazonEKSClusterPolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  role       = aws_iam_role.cluster-role.name
+}
+
+resource "aws_iam_role_policy_attachment" "cluster-role-AmazonEKSVPCResourceController" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
+  role       = aws_iam_role.cluster-role.name
+}
+
 resource "aws_security_group" "cluster-sg" {
   name        = "Cluster-SG"
   description = "Cluster communication with worker nodes"

@@ -8,15 +8,15 @@ variable "cluster_name" {
 }
 
 variable "desired_size" {
-  default = 1
+  default = 2
 }
 
 variable "max_size" {
-  default = 1
+  default = 2
 }
 
 variable "min_size" {
-  default = 1
+  default = 2
 }
 
 variable "instance_types" {

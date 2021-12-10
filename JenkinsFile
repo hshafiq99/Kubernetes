@@ -23,7 +23,7 @@ pipeline {
                         {
                             clean Ws()
                             git branch: 'master',
-                                credentialsId: 'd0550e67-ea10-44cc-933f-36da95211f88',
+                                credentialsId: 'ab7c0796-0eaf-4786-af12-94815812dbb9',
                                 url: 'https://github.com/hshafiq99/Jenkins.git'
                         }
                     }

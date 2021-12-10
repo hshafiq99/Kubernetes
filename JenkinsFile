@@ -21,7 +21,10 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/hshafiq99/Kubernetes.git"
+                            clean Ws()
+                            git branch: 'master',
+                                credentialsId: 'd0550e67-ea10-44cc-933f-36da95211f88',
+                                url: 'https://github.com/hshafiq99/Jenkins.git'
                         }
                     }
                 }

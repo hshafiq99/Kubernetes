@@ -5,11 +5,17 @@ metadata:
   labels:
     app: web-svc
 spec:
-  ports:
-  - port: 80
-    protocol: TCP
-  - port: 443
-    protocol: TCP
-  selector:
-    app: web-svc
   type: LoadBalancer
+  ports:
+    - name: ui
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: http
+      port: 80
+      targetPort: 8080
+    - name: https
+      port: 443
+      protocol: TCP
+  selector:
+    app: ingress-svc

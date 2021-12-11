@@ -10,9 +10,3 @@ data:
       groups:
         - system:bootstrappers
         - system:nodes
-  mapUsers: |
-    - userarn: arn:aws:iam::096355066567:user/hamza
-      username: hamza
-      groups:
-        - system:masters
-        - system:nodes

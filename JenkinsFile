@@ -15,8 +15,6 @@ pipeline {
      environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        DOCKER_USERNAME = credentials('DOCKER_USERNAME')
-        DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
     }
 
 
@@ -46,9 +44,6 @@ pipeline {
                 }
            }
            
-                
-            
-
            steps {
                script {
                     def plan = readFile 'tfplan.txt'
@@ -67,6 +62,30 @@ pipeline {
             
             steps {
                 sh "terraform apply -input=false tfplan"
+            }
+        }
+
+        stage('Access Cluster') {
+            when {
+                not {
+                    equals expected: true, actual: params.destroy
+                }
+            }
+            
+            steps {
+                sh "terraform output config_map_aws_auth > configmap.yml"
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                not {
+                    equals expected: true, actual: params.destroy
+                }
+            }
+            
+            steps {
+                sh "kubectl -f deployment.yml,configmap.yml,loadbalancer.yml,autoscaler.yml"
             }
         }
         

@@ -96,7 +96,6 @@ pipeline {
             }
         
         steps {
-           sh "kubectl delete -f deployment.yml,loadbalancer.yml,autoscaler.yml,ingress.yml"
            sh "terraform destroy --auto-approve"
         }
     }

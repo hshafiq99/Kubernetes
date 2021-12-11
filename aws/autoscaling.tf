@@ -7,8 +7,7 @@ resource "aws_iam_policy" "worker_autoscaling_policy" {
   name_prefix = "eks-worker-autoscaling-${var.cluster_name}"
   description = "EKS worker node autoscaling policy for cluster ${var.cluster_name}"
   policy      = data.aws_iam_policy_document.worker_autoscaling_policy_document.json
-  path        = var.iam_path
-  tags        = var.tags
+  path        = "/"
 }
 
 data "aws_iam_policy_document" "worker_autoscaling_policy_document" {

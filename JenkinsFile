@@ -75,7 +75,6 @@ pipeline {
             steps {
                 sh "terraform output config_map_aws_auth > configmap.yml"
                 sh "export KUBECONFIG=$KUBECONFIG:~/.kube/config"
-                sh "aws eks --region eu-west-2 update-kubeconfig --name eks-cluster --profile default"
             }
         }
 
@@ -87,6 +86,7 @@ pipeline {
             }
             
             steps {
+                sh "aws eks --region eu-west-2 update-kubeconfig --name eks-cluster --profile default"
                 sh "kubectl apply -f deployment.yml,configmap.yml,loadbalancer.yml,autoscaler.yml"
             }
         }

@@ -86,7 +86,7 @@ pipeline {
             }
             
             steps {
-                sh "kubectl apply -f deployment.yml,configmap.yml,loadbalancer.yml,autoscaler.yml"
+                sh "kubectl apply -f deployment.yml,loadbalancer.yml,autoscaler.yml,ingress.yml"
             }
         }
         

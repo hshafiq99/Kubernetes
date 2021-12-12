@@ -1,2 +1,3 @@
 FROM nginx:1.15.8-alpine
-copy ./*.html /usr/share/nginx/html/
+COPY ./*.html /usr/share/nginx/html/
+EXPOSE 80

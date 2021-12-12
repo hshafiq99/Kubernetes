@@ -12,17 +12,17 @@ variable "cluster_name" {
 }
 
 variable "desired_size" {
-  default = 3
+  default = 2
 }
 
 variable "max_size" {
-  default = 3
+  default = 8
 }
 
 variable "min_size" {
-  default = 3
+  default = 2
 }
 
 variable "instance_types" {
-  default = ["t3.large"]
+  default = ["t2.micro"]
 }

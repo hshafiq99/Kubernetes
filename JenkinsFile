@@ -73,7 +73,6 @@ pipeline {
             }
             
             steps {
-                sh "terraform output config_map_aws_auth > configmap.yml"
                 sh "aws eks --region eu-west-2 update-kubeconfig --name eks-cluster"
             }
         }

@@ -19,6 +19,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: ingress-svc
+              name: ingress
               port:
                 number: 80

@@ -86,12 +86,10 @@ pipeline {
             }
             
             steps {
-                sh "kubectl apply -f autoscaler.yml"
-                sh "kubectl annotate serviceaccount cluster-autoscaler -n kube-system eks.amazonaws.com role-arn=arn:aws:iam::096355066567:role/cluster-role"
+                sh "kubectl apply -f deployment/autoscaler.yml"
                 sh "kubectl -n kube-system annotate deployment.apps/cluster-autoscaler cluster-autoscaler.kubernetes.io/safe-to-evict="false""
                 sh "kubectl set image deployment cluster-autoscaler -n kube-system cluster-autoscaler=k8s.gcr.io/autoscaling/cluster-autoscaler:v1.21.1"
-                sh "kubectl create secret tls tls-secret --key key.pem --cert certificate.pem"
-                sh "kubectl apply -f deployment.yml,loadbalancer.yml,ingress.yml"
+                sh "kubectl apply -f deployment/deployment.yml,deployment/loadbalancer.yml"
             }
         }
         
@@ -101,7 +99,7 @@ pipeline {
             }
         
         steps {
-           sh "kubectl delete -f deployment.yml,loadbalancer.yml,autoscaler.yml,ingress.yml"
+           sh "kubectl delete -f deployment/deployment.yml,deployment/loadbalancer.yml"
            sh "terraform destroy --auto-approve"
         }
     }

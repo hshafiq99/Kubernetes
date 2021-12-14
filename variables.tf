@@ -24,5 +24,5 @@ variable "min_size" {
 }
 
 variable "instance_types" {
-  default = ["t2.micro"]
+  default = ["t3.large"]
 }

@@ -6,6 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginxterraform 
 spec:
   tls:
   - hosts:

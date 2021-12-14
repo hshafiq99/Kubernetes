@@ -87,7 +87,6 @@ pipeline {
             
             steps {
                 sh "kubectl apply -f deployment/autoscaler.yml"
-                sh 'kubectl -n kube-system annotate deployment.apps/cluster-autoscaler cluster-autoscaler.kubernetes.io/safe-to-evict="false"'
                 sh "kubectl set image deployment cluster-autoscaler -n kube-system cluster-autoscaler=k8s.gcr.io/autoscaling/cluster-autoscaler:v1.21.1"
                 sh "kubectl apply -f deployment/deployment.yml,deployment/loadbalancer.yml"
             }
